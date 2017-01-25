@@ -1,7 +1,7 @@
 /**
  * 
  */
-package vw.hackerrank.practice.algorithms.implementation;
+package vw.hackerrank.practice.algorithms.strings;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -16,26 +16,28 @@ import java.util.StringTokenizer;
  * @author vivek
  *
  */
-public class DivisibleSumPairsNN implements Closeable {
+public class TheLoveLetterMystery implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int n = in.nextInt();
-		int k = in.nextInt();
-		int count = 0;
-		int[] arr = new int[n];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = in.nextInt();
-		}
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
-				if (i < j && (arr[i] + arr[j]) % k == 0) {
-					count++;
+		int testCases = in.nextInt();
+		for (int i = 0; i < testCases; i++) {
+			int count = 0;
+			char[] str = in.next().toCharArray();
+			int start = 0;
+			int end = str.length - 1;
+			while (end > start) {
+				if (str[end] > str[start]) {
+					count += (str[end] - str[start]);
+				} else {
+					count += (str[start] - str[end]);
 				}
+				end--;
+				start++;
 			}
+			out.println(count);
 		}
-		out.println(count);
 	}
 
 	@Override
@@ -78,7 +80,7 @@ public class DivisibleSumPairsNN implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (DivisibleSumPairsNN instance = new DivisibleSumPairsNN()) {
+		try (TheLoveLetterMystery instance = new TheLoveLetterMystery()) {
 			instance.solve();
 		}
 	}
