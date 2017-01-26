@@ -16,23 +16,21 @@ import java.util.StringTokenizer;
  * @author vivek
  *
  */
-public class DivisibleSumPairsNN implements Closeable {
+public class SockMerchant implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		int n = in.nextInt();
-		int k = in.nextInt();
+		int testCases = in.nextInt();
 		int count = 0;
-		int[] arr = new int[n];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = in.nextInt();
+		int[] arr = new int[101];
+		arr[0] = -1;
+		for (int i = 0; i < testCases; i++) {
+			arr[in.nextInt()] += 1;
 		}
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
-				if (i < j && (arr[i] + arr[j]) % k == 0) {
-					count++;
-				}
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] > 1) {
+				count += (arr[i] / 2);
 			}
 		}
 		out.println(count);
