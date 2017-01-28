@@ -1,12 +1,7 @@
 /**
  * 
  */
-package vw.hackerrank.contests.wcs9;
-
-/**
- * @author vivek
- *
- */
+package vw.hackerrank.practice.algorithms.strings;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -15,25 +10,26 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class WeightedUniformStrings implements Closeable {
+/**
+ * @author vivek
+ *
+ */
+public class MarsExploration implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
-		String s = in.next();
-		ArrayList<Integer> arr = new ArrayList<Integer>();
-		for (int i = 0; i < s.length(); i++) {
-			arr.add((s.charAt(i) - 96));
+		String str = in.next();
+		char[] arr = { 'S', 'O', 'S' };
+		int count = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) != arr[i % 3]) {
+				count++;
+			}
 		}
-		
-		out.println(arr.toString());
+		out.println(count);
 	}
 
 	@Override
@@ -76,7 +72,7 @@ public class WeightedUniformStrings implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (WeightedUniformStrings instance = new WeightedUniformStrings()) {
+		try (MarsExploration instance = new MarsExploration()) {
 			instance.solve();
 		}
 	}

@@ -15,6 +15,7 @@ public class CeasarCipher {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		int len = in.nextInt();
 		char[] str = in.next().toCharArray();
