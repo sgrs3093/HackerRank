@@ -17,10 +17,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class WeightedUniformStrings implements Closeable {
 	private InputReader in = new InputReader(System.in);
@@ -28,12 +25,32 @@ public class WeightedUniformStrings implements Closeable {
 
 	public void solve() {
 		String s = in.next();
-		ArrayList<Integer> arr = new ArrayList<Integer>();
+		String[] arr = new String[s.length()];
+		ArrayList<Integer> union = new ArrayList<>();
 		for (int i = 0; i < s.length(); i++) {
-			arr.add((s.charAt(i) - 96));
+			for (int j = i; j < s.length(); j++) {
+				if (s.charAt(i) == s.charAt(j)) {
+					arr[i] = s.substring(i, j + 1);
+				} else {
+					arr[j] = String.valueOf(s.charAt(j));
+				}
+			}
 		}
-		
-		out.println(arr.toString());
+		for (int i = 0; i < arr.length; i++) {
+			int one = (arr[i].charAt(0) - 96);
+			union.add(one * (arr[i].length()));
+		}
+		int n = in.nextInt();
+		for (int i = 0; i < n; i++) {
+			int k = in.nextInt();
+			if (union.indexOf(k) != -1) {
+				out.println("Yes");
+			} else {
+				out.println("No");
+			}
+		}
+		out.println(Arrays.toString(arr));
+		out.println(union.toString());
 	}
 
 	@Override

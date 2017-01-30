@@ -10,32 +10,31 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
  * @author vivek
  *
  */
-public class DivisibleSumPairsNN implements Closeable {
+public class BonAppetit implements Closeable {
 	private InputReader in = new InputReader(System.in);
 	private PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
 
 	public void solve() {
 		int n = in.nextInt();
 		int k = in.nextInt();
-		int count = 0;
-		int[] arr = new int[n];
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = in.nextInt();
+		ArrayList<Integer> n_arr = in.nextIntArray(n);
+		int b = in.nextInt();
+		n_arr.remove(k);
+		long sum = 0;
+		for (Integer i : n_arr) {
+			sum += i;
 		}
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
-				if (i < j && (arr[i] + arr[j]) % k == 0) {
-					count++;
-				}
-			}
-		}
-		out.println(count);
+		long avg = (sum / 2);
+
+		out.println(((b - avg) == 0) ? "Bon Appetit" : (b - avg));
+
 	}
 
 	@Override
@@ -51,6 +50,14 @@ public class DivisibleSumPairsNN implements Closeable {
 		public InputReader(InputStream stream) {
 			reader = new BufferedReader(new InputStreamReader(stream), 32768);
 			tokenizer = null;
+		}
+
+		public ArrayList<Integer> nextIntArray(int n) {
+			ArrayList<Integer> arr = new ArrayList<Integer>();
+			for (int i = 0; i < n; i++) {
+				arr.add(Integer.parseInt(next()));
+			}
+			return arr;
 		}
 
 		public String next() {
@@ -78,7 +85,7 @@ public class DivisibleSumPairsNN implements Closeable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		try (DivisibleSumPairsNN instance = new DivisibleSumPairsNN()) {
+		try (BonAppetit instance = new BonAppetit()) {
 			instance.solve();
 		}
 	}
