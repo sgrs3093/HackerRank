@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class MinAbsDiffArray implements Closeable {
@@ -24,15 +25,12 @@ public class MinAbsDiffArray implements Closeable {
 	public void solve() {
 		int n = in.nextInt();
 		int[] arr = in.nextIntArray(n);
+		Arrays.sort(arr);
 		int min = Integer.MAX_VALUE;
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr.length; j++) {
-				int num = Math.abs(arr[i] - arr[j]);
-				if (i == j) {
-					continue;
-				} else if (num < min) {
-					min = num;
-				}
+		for (int i = 1; i < arr.length; i++) {
+			int num = Math.abs(arr[i - 1] - arr[i]);
+			if (num < min) {
+				min = num;
 			}
 		}
 		out.println(min);
